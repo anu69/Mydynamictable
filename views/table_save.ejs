@@ -1,0 +1,41 @@
+<%- include('partials/header') %>
+
+<div class="container"><div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+      <h1 class="mt-5 text-center"><%= tablename%> Table</h1>
+            <br>
+          
+        </div>
+        <div class="col-3"></div>
+    </div>
+    
+        <div class="row ">
+            <div class="col-3"></div>
+            <div class="col-6 card" id="mainrow">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <% for (var i=0; i<colcount; i++){%>
+                        <th scope="col"><%=column[i]%></th>
+                        <% } %>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% for (var i=0; i<(rowcount*colcount); i++){%>
+                      <tr> 
+                        <td><%=row[i++]%></td>
+                        <td><%=row[i]%></td>
+                      </tr>
+                      <% } %>
+                    </tbody>
+                  </table>
+         
+    </div>
+    <div class="col-3"></div>
+</div>
+</div>
+<%- include('partials/footer') %>
+
+
+

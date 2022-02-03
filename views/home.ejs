@@ -1,0 +1,61 @@
+
+<%- include('partials/header') %>
+
+<div class="container"><div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+      <h1 class="mt-5 text-center">Create columns</h1>
+      <p class="lead text-center">
+        Add your columns by specifying their names and types</p>
+            <br>
+            <button class="btn btn-default pull-right add-row" id="adddata"><i class="fa fa-angle-double-right"></i>&nbsp;&nbsp; Proceed to add row data</button>
+        </div>
+        <div class="col-3"></div>
+    </div>
+        <div class="row ">
+            <div class="col-3"></div>
+            <div class="col-6 card" id="mainrow">
+            <form action="/table" method="POST" id="form">
+                <input type="text" name="colcount" value="<%=colcount%>" hidden>
+                <input type="text" name="rowcount" value="<%=rowcount%>" hidden>
+                <input type="text" name="tablename" value="<%= tablename%>" hidden>
+
+                <%for (var i=1; i<=colcount;i++){%>
+                <div class="form-group" id="datarow1">
+                 <label class="col-sm-2 col-form-label" for="column">Column <%=i%> Name</label>
+                  <input type="text" name="column" class="form-control w-50" placeholder="Enter column <%=i%> name" value="">
+                  <label for="columntype">Column <%=i%> Type</label>
+                  <select class="form-control" name="columntype">
+                    <option value="text">String</option>
+                    <option value="number">Number</option>
+                    <option value="boolean">Boolean</option>
+                    <option value="datetime-local">Date and Time</option>
+                    <option value="email">Email</option>
+                  </select>
+                  <br>
+                </div>
+                <%}%>
+              </form>
+    </div>
+    <div class="col-3"></div>
+</div>
+</div>
+
+<script>
+    var count=2;
+    $("#add").click(function(){
+       var prev= count-1;
+      $("#datarow"+prev).clone().attr("id", 'datarow'+ count++).insertAfter("#datarow"+prev);
+      $("#datarow"+prev)
+   
+// $( "#datarow" ).clone().appendTo( "#mainrow" );
+});
+$("#remove").click(function(){
+    $("#datarow").remove();
+});
+$("#adddata").click(function(){
+    $("#form").submit();
+});
+</script>
+
+<%- include('partials/footer') %>

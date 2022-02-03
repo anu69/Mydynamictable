@@ -1,0 +1,71 @@
+
+<%- include('partials/header') %>
+
+<div class="container"><div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+      <h1 class="mt-5 text-center">Enter data</h1>
+      <p class="lead text-center">
+        Add your columns by specifying their names and types</p>
+            <br>
+            <button class="btn btn-default pull-right add-row" id="adddata"><i class="fa fa-angle-double-right"></i>&nbsp;&nbsp; Proceed to view table</button>
+        </div>
+        <div class="col-3"></div>
+    </div>
+    
+        <div class="row ">
+            <div class="col-3"></div>
+            <div class="col-6 card" id="mainrow">
+            <form action="/table_save" method="POST" id="form">
+                <div class="form-group" id="datarow1">
+                    <input type="text" name="rowcount" class="form-control w-50" value="<%=rowcount%>" hidden> 
+                    <input type="text" name="colcount" class="form-control w-50" value="<%=colcount%>" hidden> 
+                    <input type="text" name="tablename" value="<%= tablename%>" hidden>
+                    <!-- col and coltype -->
+                    <%for (var i=0; i<colcount;i++){%>
+                          <input type="text" name="column" value="<%=column[i]%>" hidden>
+                          <input type="text" name="columntype" value="<%=columntype[i]%>" hidden>
+                        <%}%>
+                    <!-- end  -->
+                  <% for (var i=1; i<=rowcount; i++){%>
+                    <h5>Data for row<%=i%>: </h5>
+                    <% for (var j=1; j<=colcount; j++){%>
+                 <label for="row" class="col-sm-2 col-form-label"> Column: <%=column[j-1]%></label>
+                 <%if ((columntype[j-1])=="boolean"){%>
+                    <select class="form-control" name="ro">
+                      <option value="true">True</option>
+                      <option value="false">False</option>
+                      </select>
+                      <%}else{%>
+                 <input type="<%=columntype[j-1]%>" name="row" class="form-control w-50" placeholder="Enter data" value="">
+                 <% } %>
+                 <% } %>
+                 <hr>
+                 <% } %>
+                  <br>
+              
+                </div>
+              </form>
+    </div>
+    <div class="col-3"></div>
+</div>
+</div>
+
+<script>
+    var count=2;
+    $("#add").click(function(){
+       var prev= count-1;
+      $("#datarow"+prev).clone().attr("id", 'datarow'+ count++).insertAfter("#datarow"+prev);
+      $("#datarow"+prev)
+   
+// $( "#datarow" ).clone().appendTo( "#mainrow" );
+});
+$("#remove").click(function(){
+    $("#datarow").remove();
+});
+$("#adddata").click(function(){
+    $("#form").submit();
+});
+</script>
+
+    <%- include('partials/footer') %>

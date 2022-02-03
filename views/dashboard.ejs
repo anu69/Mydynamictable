@@ -1,0 +1,42 @@
+
+<%- include('partials/header') %>
+
+<div class="container"><div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+      <h1 class="mt-5 text-center">Create columns</h1>
+      <p class="lead text-center">
+        Add your columns by specifying their names and types</p>
+            <br>
+            <button class="btn btn-default pull-right add-row" id="adddata"><i class="fa fa-angle-double-right"></i>&nbsp;&nbsp; Proceed to add column data</button>
+        </div>
+        <div class="col-3"></div>
+    </div>
+    
+        <div class="row ">
+            <div class="col-3"></div>
+            <div class="col-6 card" id="mainrow">
+            <form action="/home" method="POST" id="form">
+                <div class="form-group" id="datarow1">
+                    <label class="col-sm-2 col-form-label" for="tablename">Enter a name for the table</label>
+                  <input type="text" name="tablename"class="form-control w-50" placeholder="Table name goes here" value="">
+                 <label class="col-sm-2 col-form-label" for="rowcount">Enter the required number of Columns</label>
+                  <input type="number" name="rowcount"class="form-control w-50" placeholder="Enter number of Columns required" value="2">
+                  <label class="col-sm-2 col-form-label" for="colcount">Enter the required number of Rows</label>
+                  <input type="number" name="colcount"class="form-control w-50" placeholder="Enter number of Rows required" value="2">
+                  
+                  <br>
+                </div>
+              </form>
+    </div>
+    <div class="col-3"></div>
+</div>
+</div>
+
+
+<script>
+    $("#adddata").click(function(){
+    $("#form").submit();
+});
+</script>
+<%- include('partials/footer') %>
